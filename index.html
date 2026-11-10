@@ -1,0 +1,875 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Nexium · Tecnologia que trabalha por você</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500&display=swap">
+<meta name="description" content="Nexium: soluções tecnológicas e desenvolvimento de software sob medida. ERPs, dashboards, catálogos digitais, sites, automações e consultoria. Tecnologia que trabalha por você.">
+<meta name="theme-color" content="#0B0D12">
+<meta property="og:title" content="Nexium · Tecnologia que trabalha por você">
+<meta property="og:description" content="Software sob medida que trabalha por você: ERPs, dashboards, catálogos, sites, automações e consultoria.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<style>body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body><style>
+/* Layout: página escura de marca sobre grade técnica; hero em duas colunas com o Nex; seções em faixas largas com miolo de 1160px */
+:root{
+  color-scheme: dark;
+  --onix:#0B0D12;      /* fundo principal */
+  --grafite:#161B26;   /* superfícies, cards */
+  --abissal:#0E1F44;   /* fundos de destaque */
+  --azul:#2F6BFF;      /* cor de marca */
+  --ciano:#3FE0D0;     /* acento pontual */
+  --aco:#8A93A6;       /* texto secundário */
+  --nevoa:#E6EAF2;     /* texto em fundo escuro */
+  --branco:#FFFFFF;
+  --linha:rgba(255,255,255,.08);
+  --linha-forte:rgba(255,255,255,.16);
+  --azul-suave:rgba(47,107,255,.14);
+  --grad:linear-gradient(90deg,var(--azul),var(--ciano));
+  --f-titulo:'Space Grotesk','Segoe UI',Arial,sans-serif;
+  --f-texto:Inter,'Segoe UI',Arial,sans-serif;
+  --f-mono:'JetBrains Mono',Consolas,'Courier New',monospace;
+  --miolo:1160px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--onix);color:var(--nevoa);font-family:var(--f-texto);font-size:17px;line-height:1.6;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:60;background:var(--onix)}
+.fundo{position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(60% 50% at 88% 4%,rgba(47,107,255,.32),transparent 70%),
+    radial-gradient(50% 45% at 0% 100%,rgba(63,224,208,.10),transparent 70%),
+    var(--onix);}
+.fundo::after{content:"";position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.5) 60%,transparent 100%)}
+a{color:inherit}
+.miolo{max-width:var(--miolo);margin-inline:auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1,h2,h3{font-family:var(--f-titulo);color:var(--branco);text-wrap:balance;margin:0;letter-spacing:-.02em;line-height:1.08}
+h1{font-size:clamp(2.6rem,6.2vw,4.9rem);font-weight:700}
+h2{font-size:clamp(2rem,4.2vw,3.2rem);font-weight:700}
+h3{font-size:1.35rem;font-weight:700;letter-spacing:-.01em}
+p{margin:0}
+.grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.chip{display:inline-flex;align-items:center;gap:10px;padding:8px 18px 8px 14px;border-radius:999px;
+  background:var(--azul-suave);border:1px solid rgba(47,107,255,.6);font-family:var(--f-mono);font-size:.74rem;
+  letter-spacing:.18em;text-transform:uppercase;color:var(--nevoa)}
+.chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ciano);box-shadow:0 0 10px var(--ciano)}
+.sub{color:var(--aco);font-size:1.12rem;max-width:58ch}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:54px;padding:0 28px;border-radius:999px;
+  font-family:var(--f-titulo);font-weight:700;font-size:1.02rem;text-decoration:none;border:0;cursor:pointer;transition:transform .2s,box-shadow .2s,background .2s}
+.btn-grad{background:var(--grad);color:var(--onix)}
+.btn-grad:hover{transform:translateY(-2px);box-shadow:0 10px 30px rgba(63,224,208,.25)}
+.btn-linha{background:transparent;color:var(--branco);border:1.5px solid var(--linha-forte);font-family:var(--f-texto);font-weight:600}
+.btn-linha:hover{border-color:var(--ciano);color:var(--ciano)}
+.btn-azul{background:var(--azul);color:var(--branco);font-family:var(--f-texto);font-weight:600;min-height:46px;padding:0 22px;font-size:.95rem}
+.btn-azul:hover{background:#4A84FF}
+:focus-visible{outline:2px solid var(--ciano);outline-offset:3px;border-radius:8px}
+.secao{padding-block:clamp(72px,10vw,128px)}
+.cabeca-secao{display:grid;gap:18px;margin-bottom:48px;max-width:760px}
+
+/* Topo */
+header.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  background:rgba(11,13,18,.72);border-bottom:1px solid var(--linha)}
+.topo .miolo{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:76px}
+.logo{display:block;height:38px;width:auto}
+.topo nav{display:flex;gap:30px}
+.topo nav a{text-decoration:none;color:var(--aco);font-size:.95rem;transition:color .2s}
+.topo nav a:hover{color:var(--branco)}
+@media (max-width:900px){.topo nav{display:none}}
+@media (max-width:420px){.logo{height:30px}.topo .btn-azul{padding:0 16px}}
+
+/* Hero */
+.hero{padding-block:clamp(48px,7vw,96px) clamp(40px,6vw,72px)}
+.hero .miolo{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero-texto{display:grid;gap:28px;justify-items:start;min-width:0}
+.acoes{display:flex;flex-wrap:wrap;gap:14px}
+.hero-nex{position:relative;display:grid;place-items:center;min-width:0}
+.hero-nex .halo{position:absolute;width:88%;aspect-ratio:1;max-width:100%;border-radius:50%;background:radial-gradient(circle,rgba(47,107,255,.22),rgba(47,107,255,.04) 60%,transparent 70%)}
+.hero-nex .mascote{position:relative;width:min(380px,82%);animation:flutua 5s ease-in-out infinite}
+.toast{position:absolute;left:-4%;bottom:6%;display:flex;align-items:center;gap:14px;padding:14px 20px 14px 14px;border-radius:20px;
+  background:rgba(22,27,38,.94);border:1px solid var(--linha-forte);box-shadow:0 20px 50px rgba(0,0,0,.4);animation:entra .8s .6s both}
+.toast .ok{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:rgba(63,224,208,.15);flex:none}
+.toast b{display:block;color:var(--branco);font-weight:600;font-size:.98rem}
+.toast small{font-family:var(--f-mono);color:var(--aco);font-size:.78rem}
+@media (max-width:860px){.hero .miolo{grid-template-columns:1fr}.hero-nex{max-width:420px;margin-inline:auto;width:100%}.toast{left:0}}
+@keyframes flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-14px)}}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.aceno{transform-box:view-box;transform-origin:260px 272px;animation:acena 1.6s ease-in-out infinite}
+@keyframes acena{0%,100%{transform:rotate(0)}50%{transform:rotate(16deg)}}
+
+/* Faixa de serviços */
+.faixa{border-block:1px solid var(--linha);background:rgba(14,31,68,.35);overflow:hidden;user-select:none;-webkit-user-select:none}
+.faixa-trilho{display:flex;width:max-content;padding-block:22px;animation:corre 30s linear infinite !important;will-change:transform}
+.faixa-grupo{display:flex;flex:none}
+.faixa span{font-family:var(--f-mono);font-size:.9rem;letter-spacing:.22em;text-transform:uppercase;color:var(--nevoa);display:flex;align-items:center;white-space:nowrap;padding-right:56px}
+.faixa span::after{content:"";width:9px;height:9px;border-radius:50%;background:var(--ciano);margin-left:56px;flex:none}
+@keyframes corre{from{transform:translate3d(0,0,0)}to{transform:translate3d(-50%,0,0)}}
+
+/* Pilares */
+.pilares{display:grid;grid-template-columns:1.1fr 1fr;gap:56px;align-items:start}
+.pilares-lista{display:grid;gap:14px}
+.pilar{display:grid;grid-template-columns:56px 1fr;gap:20px;align-items:center;padding:22px 24px;border-radius:22px;border:1px solid var(--linha);background:rgba(22,27,38,.6)}
+.pilar .ico{width:56px;height:56px;border-radius:16px;background:var(--azul-suave);display:grid;place-items:center}
+.pilar b{font-family:var(--f-titulo);font-size:1.2rem;color:var(--branco);display:block}
+.pilar span{color:var(--aco);font-size:.96rem}
+@media (max-width:860px){.pilares{grid-template-columns:1fr;gap:36px}}
+
+/* Serviços */
+.grupo{display:grid;gap:22px}
+.grupo + .grupo{margin-top:56px}
+.grupo-titulo{display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap;border-bottom:1px solid var(--linha);padding-bottom:16px}
+.grupo-titulo h3{font-size:1.6rem}
+.grupo-titulo small{font-family:var(--f-mono);color:var(--aco);letter-spacing:.14em;text-transform:uppercase;font-size:.75rem}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.card{display:flex;flex-direction:column;gap:16px;padding:30px;border-radius:28px;background:var(--grafite);border:1px solid var(--linha);transition:border-color .25s,transform .25s;min-width:0}
+.card:hover{border-color:rgba(47,107,255,.55);transform:translateY(-4px)}
+.card .ico{width:64px;height:64px;border-radius:18px;background:var(--azul-suave);display:grid;place-items:center}
+.card p{color:var(--aco);font-size:.98rem;flex:1}
+.card ul{margin:0;padding:0;list-style:none;display:grid;gap:8px;font-size:.92rem;color:var(--nevoa)}
+.card li{display:flex;gap:10px;align-items:baseline}
+.card li::before{content:"";flex:none;width:6px;height:6px;border-radius:2px;background:var(--ciano);transform:translateY(-2px)}
+.card a.mais{font-family:var(--f-mono);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ciano);text-decoration:none}
+.card a.mais:hover{text-decoration:underline}
+@media (max-width:960px){.cards{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.cards{grid-template-columns:1fr}}
+
+/* Para quem é */
+.publico-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;max-width:900px;margin-inline:auto}
+.pcard{position:relative;aspect-ratio:270/335;max-width:100%;border-radius:30px;overflow:hidden;border:1px solid var(--linha-forte);background:var(--grafite);transition:transform .3s,border-color .3s}
+.pcard:hover{transform:translateY(-6px);border-color:rgba(63,224,208,.5)}
+.pcard .cena{position:absolute;inset:0;width:100%;height:100%}
+.pcard .mascote{position:absolute;left:50%;bottom:8%;width:66%;transform:translateX(-50%);transition:transform .4s}
+.pcard:hover .mascote{transform:translateX(-50%) translateY(-8px) scale(1.03)}
+.pcard::after{content:"";position:absolute;inset:auto 0 0;height:55%;background:linear-gradient(to top,rgba(11,13,18,.96) 18%,rgba(11,13,18,.6) 55%,transparent)}
+.pcard h3{position:absolute;z-index:1;inset:auto 12px 12%;text-align:center;font-size:clamp(1.3rem,2.4vw,1.7rem);line-height:1.12;color:var(--branco)}
+.desce{display:grid;place-items:center;width:max-content;margin:44px auto 0;color:var(--aco);animation:quica 2s ease-in-out infinite}
+.desce:hover{color:var(--ciano)}
+@keyframes quica{50%{transform:translateY(6px)}}
+@media (max-width:760px){.publico-cards{grid-template-columns:1fr;max-width:320px}}
+
+/* Diferenças */
+.difs-titulo{text-align:center;font-weight:400;font-size:clamp(2.1rem,4.6vw,3.4rem);color:var(--nevoa);margin-bottom:56px}
+.difs-titulo b{font-weight:700;color:var(--branco)}
+.difs-titulo .ponto{color:var(--ciano)}
+.difs-palco{position:relative;max-width:900px;margin-inline:auto;display:grid;gap:16px}
+.seta{position:absolute;width:44px;height:120px;color:var(--aco);opacity:.6;bottom:24px}
+.seta-esq{left:-62px}.seta-dir{right:-62px}
+@media (max-width:1060px){.seta{display:none}}
+.janela{border-radius:20px;background:#0F1218;border:1px solid var(--linha-forte);overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.janela-barra{display:flex;align-items:center;gap:18px;padding:12px 16px;background:var(--grafite);border-bottom:1px solid var(--linha)}
+.bolinhas{display:flex;gap:7px}.bolinhas i{width:11px;height:11px;border-radius:50%;background:#FF5F57}
+.bolinhas i:nth-child(2){background:#FEBC2E}.bolinhas i:nth-child(3){background:#28C840}
+.nav-ic{display:flex;gap:10px;color:var(--aco)}
+.url{flex:1;max-width:340px;padding:6px 14px;border-radius:999px;background:var(--onix);font-family:var(--f-mono);font-size:.74rem;color:var(--aco);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.janela-corpo{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:end;padding:clamp(18px,3.4vw,30px);
+  background:radial-gradient(60% 70% at 20% 20%,rgba(255,255,255,.03),transparent)}
+.opcao{border-radius:18px;padding:18px;display:grid;gap:14px;min-width:0}
+.opcao ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.opcao li{display:flex;align-items:center;gap:12px;padding:9px 12px;border-radius:10px;font-size:.92rem;line-height:1.35}
+.marca{flex:none;width:22px;height:22px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:1rem;line-height:1}
+.rodape-op{display:flex;align-items:center;gap:8px;font-size:.82rem;margin-top:4px}
+.opcao-ruim{background:linear-gradient(135deg,#4A5160,#2A2F3A 55%,#3A404C);color:var(--nevoa)}
+.opcao-ruim li{border:1px solid rgba(255,255,255,.22);background:rgba(255,255,255,.04)}
+.opcao-ruim .marca{background:rgba(255,255,255,.85);color:#2A2F3A}
+.opcao-ruim .rodape-op{color:rgba(230,234,242,.8)}
+.opcao-boa{position:relative;overflow:hidden;color:var(--branco);
+  background:radial-gradient(80% 60% at 85% 0%,rgba(63,224,208,.55),transparent 70%),linear-gradient(150deg,#2F6BFF 0%,#1A3FB0 70%,#0E1F44 100%);
+  box-shadow:0 20px 60px rgba(47,107,255,.35)}
+.opcao-boa li{border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.07);font-weight:500}
+.opcao-boa .marca{background:var(--branco);color:var(--azul)}
+.opcao-boa .rodape-op{margin-top:18px}
+.op-logo{height:22px;width:auto;margin-left:auto}
+.legenda{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;padding:14px 16px;border-radius:16px;background:#0F1218;border:1px solid var(--linha-forte);font-size:.92rem;color:var(--nevoa)}
+.legenda span{display:flex;align-items:center;gap:12px}
+.legenda em{font-style:normal;color:var(--aco);font-family:var(--f-mono);font-size:.8rem}
+.bola{flex:none;width:26px;height:26px;border-radius:50%}
+.bola-cinza{background:#5A6170}
+.bola-marca{background:var(--grad);box-shadow:0 0 14px rgba(63,224,208,.5)}
+.difs-texto{max-width:68ch;margin:44px auto 0;text-align:center;color:var(--aco)}
+.difs-cta{display:flex;justify-content:center;margin-top:30px}
+.btn-brilho{box-shadow:0 0 34px rgba(63,224,208,.35)}
+@media (max-width:760px){.janela-corpo{grid-template-columns:1fr;gap:18px}.legenda{justify-content:flex-start}.legenda em{width:100%}}
+
+/* Processo */
+.processo{background:linear-gradient(180deg,transparent,rgba(14,31,68,.5) 30%,rgba(14,31,68,.5) 70%,transparent)}
+.etapas{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:etapa}
+.etapa{position:relative;padding:32px 30px;border-radius:28px;border:1px solid var(--linha);background:rgba(11,13,18,.7);display:grid;gap:12px;align-content:start}
+.etapa .num{font-family:var(--f-titulo);font-weight:700;font-size:3.4rem;line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.etapa .tag{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;color:var(--ciano)}
+.etapa p{color:var(--aco);font-size:.98rem}
+@media (max-width:860px){.etapas{grid-template-columns:1fr}}
+
+/* Dica do Nex */
+.dica{display:grid;grid-template-columns:260px 1fr;gap:48px;align-items:center;padding:clamp(28px,4vw,48px);border-radius:32px;background:var(--grafite);border:1px solid var(--linha)}
+.dica .mascote{width:100%;max-width:240px;margin-inline:auto}
+.dica-lista{display:grid;gap:14px;margin-top:26px}
+.dica-item{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;padding:18px 20px;border-radius:18px;background:rgba(11,13,18,.6);border:1px solid var(--linha)}
+.dica-item .n{font-family:var(--f-mono);color:var(--onix);background:var(--ciano);border-radius:10px;width:34px;height:34px;display:grid;place-items:center;font-size:.9rem}
+.dica-item b{color:var(--branco);font-family:var(--f-titulo);font-size:1.1rem;display:block}
+.dica-item span{color:var(--aco);font-size:.95rem}
+@media (max-width:760px){.dica{grid-template-columns:1fr}.dica .mascote{max-width:180px}}
+
+/* Case */
+.case{display:grid;grid-template-columns:.9fr 1.1fr;gap:48px;align-items:center}
+.case-texto{display:grid;gap:22px;min-width:0}
+.case-numero{display:flex;align-items:baseline;gap:16px;flex-wrap:wrap}
+.case-numero strong{font-family:var(--f-titulo);font-size:clamp(3.4rem,8vw,5.4rem);line-height:1;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.case-numero span{color:var(--nevoa);font-size:1.05rem;max-width:18ch}
+.case-meta{display:grid;gap:6px;font-family:var(--f-mono);font-size:.82rem;color:var(--aco);letter-spacing:.06em}
+.painel{border-radius:28px;background:var(--grafite);border:1px solid var(--linha-forte);overflow:hidden;min-width:0;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+.painel-topo{display:flex;align-items:center;justify-content:space-between;padding:16px 22px;border-bottom:1px solid var(--linha);gap:12px}
+.painel-topo b{font-family:var(--f-titulo);color:var(--branco);font-size:1rem}
+.aovivo{display:inline-flex;align-items:center;gap:8px;font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ciano)}
+.aovivo::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ciano);animation:pulsa 1.6s ease-in-out infinite}
+@keyframes pulsa{50%{opacity:.3}}
+.kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linha)}
+.kpi{background:var(--grafite);padding:18px 22px;display:grid;gap:4px;min-width:0}
+.kpi small{color:var(--aco);font-size:.8rem}
+.kpi strong{font-family:var(--f-titulo);font-size:1.45rem;color:var(--branco);font-variant-numeric:tabular-nums;white-space:nowrap}
+.kpi em{font-style:normal;font-family:var(--f-mono);font-size:.76rem;color:var(--ciano)}
+.graficos{display:grid;grid-template-columns:1.4fr 1fr;gap:1px;background:var(--linha);border-top:1px solid var(--linha)}
+.graf{background:var(--grafite);padding:18px 22px;min-width:0}
+.graf h4{margin:0 0 12px;font-size:.82rem;font-weight:500;color:var(--aco)}
+.graf svg{width:100%;height:auto;display:block}
+.barras{display:grid;gap:10px}
+.barra{display:grid;grid-template-columns:84px 1fr 34px;align-items:center;gap:10px;font-size:.8rem;color:var(--aco);font-variant-numeric:tabular-nums}
+.barra i{display:block;height:10px;border-radius:6px;background:var(--grad)}
+.barra .trilho{background:rgba(255,255,255,.06);border-radius:6px}
+.barra b{color:var(--nevoa);font-weight:500;text-align:right}
+.nota{font-family:var(--f-mono);font-size:.72rem;color:var(--aco);padding:12px 22px;border-top:1px solid var(--linha)}
+@media (max-width:960px){.case{grid-template-columns:1fr}}
+@media (max-width:560px){.graficos{grid-template-columns:1fr}.kpis{grid-template-columns:1fr}.kpi{grid-template-columns:1fr auto;align-items:baseline}.kpi small{grid-column:1/-1}}
+
+/* Nex */
+.nex{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+.nex-palco{position:relative;border-radius:32px;background:radial-gradient(70% 60% at 50% 40%,var(--abissal),var(--onix));border:1px solid var(--linha);padding:40px 24px 28px;display:grid;justify-items:center;gap:22px;min-width:0}
+.nex-palco .mascote{width:min(300px,80%);animation:flutua 5s ease-in-out infinite}
+.balao{position:relative;max-width:420px;padding:16px 22px;border-radius:20px;background:var(--branco);color:var(--onix);font-weight:500;text-align:center;font-size:1rem}
+.balao::after{content:"";position:absolute;left:50%;bottom:-9px;width:18px;height:18px;background:var(--branco);transform:translateX(-50%) rotate(45deg);border-radius:3px}
+.balao{order:-1}
+.poses{display:flex;flex-wrap:wrap;gap:10px}
+.pose{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.16em;text-transform:uppercase;padding:10px 16px;border-radius:999px;cursor:pointer;
+  background:transparent;color:var(--aco);border:1px solid var(--linha-forte);transition:all .2s}
+.pose:hover{color:var(--branco)}
+.pose[aria-pressed="true"]{background:var(--azul-suave);border-color:var(--ciano);color:var(--ciano)}
+.ficha{display:grid;grid-template-columns:auto 1fr;gap:10px 20px;margin-top:8px;font-size:.95rem}
+.ficha dt{font-family:var(--f-mono);font-size:.76rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ciano);padding-top:3px}
+.ficha dd{margin:0;color:var(--nevoa)}
+@media (max-width:860px){.nex{grid-template-columns:1fr}}
+
+/* Missão */
+.missao{text-align:left}
+.missao blockquote{margin:0;padding:clamp(28px,5vw,56px);border-radius:32px;border:1px solid var(--linha);background:var(--grafite);display:grid;gap:22px;position:relative;overflow:hidden}
+.missao blockquote::before{content:"\201C";position:absolute;right:28px;top:-20px;font-family:var(--f-titulo);font-size:14rem;line-height:1;color:var(--azul);opacity:.25}
+.missao blockquote p{font-size:clamp(1.25rem,2.4vw,1.7rem);color:var(--nevoa);max-width:36ch;line-height:1.45;font-family:var(--f-titulo);font-weight:500}
+.missao cite{font-style:normal;font-family:var(--f-mono);font-size:.8rem;letter-spacing:.16em;text-transform:uppercase;color:var(--aco)}
+
+/* Contato */
+.contato{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contato-texto{display:grid;gap:24px;min-width:0}
+.dor{display:flex;flex-wrap:wrap;gap:10px}
+.dor button{font-family:var(--f-texto);font-size:.92rem;padding:10px 16px;border-radius:999px;border:1px solid var(--linha-forte);background:rgba(22,27,38,.7);color:var(--nevoa);cursor:pointer;transition:all .2s;text-align:left}
+.dor button:hover{border-color:var(--azul)}
+.dor button[aria-pressed="true"]{background:var(--azul);border-color:var(--azul);color:var(--branco)}
+.resposta{display:grid;grid-template-columns:88px 1fr;gap:16px;align-items:center;padding:18px;border-radius:22px;background:var(--grafite);border:1px solid var(--linha)}
+.resposta .mascote{width:88px}
+.resposta b{color:var(--branco);font-family:var(--f-titulo);font-size:1.08rem;display:block}
+.resposta span{color:var(--aco);font-size:.94rem}
+form.form{display:grid;gap:16px;padding:clamp(24px,4vw,40px);border-radius:32px;background:var(--grafite);border:1px solid var(--linha-forte);min-width:0}
+.campo{display:grid;gap:8px}
+.campo label{font-family:var(--f-mono);font-size:.74rem;letter-spacing:.14em;text-transform:uppercase;color:var(--aco)}
+.campo input,.campo select,.campo textarea{width:100%;font:inherit;font-size:1rem;color:var(--branco);background:var(--onix);border:1px solid var(--linha-forte);border-radius:14px;padding:14px 16px;transition:border-color .2s}
+.campo textarea{min-height:110px;resize:vertical}
+.campo input:focus,.campo select:focus,.campo textarea:focus{outline:none;border-color:var(--ciano)}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.aviso-whats{margin:-4px 0 0;text-align:center;font-size:.86rem;color:var(--aco)}
+.aviso-whats.erro{color:#FF8A8A}
+.campo input[aria-invalid="true"]{border-color:#FF8A8A}
+@media (max-width:900px){.contato{grid-template-columns:1fr}}
+@media (max-width:520px){.duas{grid-template-columns:1fr}}
+
+/* Rodapé */
+footer{border-top:1px solid var(--linha);padding-block:48px 40px}
+footer .miolo{display:grid;gap:28px}
+.rodape-topo{display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+.rodape-topo p{font-family:var(--f-titulo);font-size:1.3rem;color:var(--branco)}
+.sociais{display:flex;flex-wrap:wrap;gap:14px}
+.social{display:inline-flex;align-items:center;gap:14px;padding:12px 22px 12px 14px;border-radius:999px;text-decoration:none;
+  background:var(--grafite);border:1px solid var(--linha-forte);color:var(--ciano);transition:border-color .2s,transform .2s}
+.social:hover{border-color:var(--ciano);transform:translateY(-2px)}
+.social svg{flex:none;width:42px;height:42px;padding:10px;border-radius:50%;background:var(--azul-suave)}
+.social b{display:block;color:var(--branco);font-family:var(--f-titulo);font-size:1rem;line-height:1.2}
+.social small{font-family:var(--f-mono);font-size:.76rem;color:var(--aco)}
+.rodape-base{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:var(--f-mono);font-size:.78rem;color:var(--aco);letter-spacing:.06em}
+.rodape-base a{color:var(--ciano);text-decoration:none}
+
+@media (prefers-reduced-motion:reduce){*:not(.faixa-trilho){animation:none!important;transition:none!important}html{scroll-behavior:auto}.faixa-trilho{animation-duration:60s!important}}
+</style>
+
+<!-- Gradientes e filtros da marca, compartilhados por todos os desenhos do Nex -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="gSym" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4A84FF"/><stop offset="1" stop-color="#1A3FB0"/></linearGradient>
+    <linearGradient id="mBody" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF"/><stop offset="1" stop-color="#C9D2E2"/></linearGradient>
+    <linearGradient id="mFlame" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#3FE0D0"/><stop offset="1" stop-color="#2F6BFF" stop-opacity="0"/></linearGradient>
+    <radialGradient id="mVisor" cx=".3" cy=".2" r=".95"><stop offset="0" stop-color="#1E2940"/><stop offset="1" stop-color="#06080C"/></radialGradient>
+    <filter id="mGlow" x="-60%" y="-60%" width="220%" height="220%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <linearGradient id="aArea" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#2F6BFF" stop-opacity=".5"/><stop offset="1" stop-color="#2F6BFF" stop-opacity="0"/></linearGradient>
+    <linearGradient id="aLinha" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#2F6BFF"/><stop offset="1" stop-color="#3FE0D0"/></linearGradient>
+  </defs>
+</svg>
+
+<div class="fundo" aria-hidden="true"></div>
+
+<header class="topo">
+  <div class="miolo">
+    <a href="#inicio" aria-label="Nexium — início">
+      <svg class="logo" viewBox="0 0 440 120" role="img" aria-label="Nexium"><rect width="120" height="120" rx="30" fill="url(#gSym)"/><rect x="1" y="1" width="118" height="118" rx="29" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/><path d="M34 88V32L86 88V50" fill="none" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><circle cx="86" cy="31" r="9" fill="#3FE0D0"/><g transform="translate(150 32) scale(.7)"><g fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M7 73V7L55 73V7"/><path d="M127 7H87V73H127M87 40H119"/><path d="M159 7L207 73M207 7L159 73"/><path d="M239 32V73"/><path d="M271 7V49A24 24 0 0 0 319 49V7"/><path d="M351 73V7L377 45L403 7V73"/></g><circle cx="239" cy="9" r="8.5" fill="#3FE0D0"/></g></svg>
+    </a>
+    <nav aria-label="Principal">
+      <a href="#servicos">Serviços</a>
+      <a href="#como-trabalhamos">Como trabalhamos</a>
+      <a href="#cases">Cases</a>
+      <a href="#nex">Conheça o Nex</a>
+    </nav>
+    <a class="btn btn-azul" href="#contato">Fale conosco</a>
+  </div>
+</header>
+
+<main id="inicio">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="miolo">
+      <div class="hero-texto">
+        <span class="chip">Automações · Sites · ERPs · Dashboards</span>
+        <h1>Software sob medida<br>que trabalha<br><span class="grad">por você.</span></h1>
+        <p class="sub">Unimos design, dados e automação para empresas que querem crescer sem aumentar a operação.</p>
+        <div class="acoes">
+          <a class="btn btn-grad" href="#contato">Começar projeto →</a>
+          <a class="btn btn-linha" href="#cases">Ver cases</a>
+        </div>
+      </div>
+      <div class="hero-nex">
+        <div class="halo" aria-hidden="true"></div>
+        <div class="mascote" data-pose="acenando" data-anim="1" role="img" aria-label="Nex, o mascote da Nexium, acenando"></div>
+        <div class="toast" aria-hidden="true">
+          <span class="ok"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3FE0D0" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+          <span><b>Lead integrado ao CRM</b><small>agora mesmo</small></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="faixa" aria-hidden="true">
+    <div class="faixa-trilho">
+      <div class="faixa-grupo"><span>ERPs</span><span>Dashboards</span><span>Catálogos digitais</span><span>Sites e landing pages</span><span>Automações</span><span>Consultoria em tecnologia</span></div>
+      <div class="faixa-grupo"><span>ERPs</span><span>Dashboards</span><span>Catálogos digitais</span><span>Sites e landing pages</span><span>Automações</span><span>Consultoria em tecnologia</span></div>
+    </div>
+  </div>
+
+  <!-- QUEM SOMOS -->
+  <section class="secao">
+    <div class="miolo pilares">
+      <div class="cabeca-secao" style="margin:0">
+        <span class="chip">Prazer, Nexium</span>
+        <h2>Tecnologia que <span class="grad">trabalha por você.</span></h2>
+        <p class="sub">A Nexium é uma empresa de soluções tecnológicas e desenvolvimento de software. Criamos sistemas sob medida que organizam a operação, eliminam tarefas repetitivas e transformam dados em decisões para o seu negócio crescer.</p>
+        <p class="sub">Nada de template pronto. Cada projeto nasce do jeito que a sua empresa já funciona.</p>
+      </div>
+      <div class="pilares-lista">
+        <div class="pilar">
+          <span class="ico"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 50 50 14M20 14h-6v6M44 50h6v-6"/><circle cx="32" cy="32" r="8"/></svg></span>
+          <div><b>Sob medida</b><span>Feito para o seu processo, não o contrário.</span></div>
+        </div>
+        <div class="pilar">
+          <span class="ico"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="32" r="6"/><circle cx="52" cy="32" r="6"/><path d="M18 32h28"/><path d="M38 24l8 8-8 8"/></svg></span>
+          <div><b>Ponta a ponta</b><span>Do diagnóstico ao suporte, com o mesmo time.</span></div>
+        </div>
+        <div class="pilar">
+          <span class="ico"><svg width="30" height="30" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 52h44"/><path d="M16 44V34M28 44V26M40 44V18M52 44V10"/></svg></span>
+          <div><b>Escalável</b><span>Cresce junto com a empresa, sem refazer tudo.</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVIÇOS -->
+  <section class="secao" id="servicos" style="padding-top:0">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <span class="chip">O que fazemos</span>
+        <h2>Seis frentes para a sua empresa <span class="grad">funcionar melhor.</span></h2>
+      </div>
+
+      <div class="grupo">
+        <div class="grupo-titulo"><h3>Desenvolvimento de software</h3><small>Gestão · Dados · Vendas</small></div>
+        <div class="cards">
+          <article class="card">
+            <span class="ico"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 8 58 20 32 32 6 20Z"/><path d="M6 32l26 12 26-12"/><path d="M6 44l26 12 26-12"/></svg></span>
+            <h3>ERPs</h3>
+            <p>Sistemas de gestão integrados: estoque, vendas, financeiro e fiscal em um só lugar.</p>
+            <ul><li>Controle de estoque em tempo real</li><li>Vendas e financeiro conectados</li><li>Acesso por perfil de usuário</li></ul>
+            <a class="mais" href="#contato" data-interesse="ERP">Quero um ERP →</a>
+          </article>
+          <article class="card">
+            <span class="ico"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 56h48M14 48V36M26 48V24M38 48V32M50 48V14"/></svg></span>
+            <h3>Dashboards</h3>
+            <p>Painéis com indicadores em tempo real para decidir com dados, não no achismo.</p>
+            <ul><li>Indicadores de vendas e operação</li><li>Integração com planilhas e sistemas</li><li>Relatórios automáticos</li></ul>
+            <a class="mais" href="#contato" data-interesse="Dashboard">Quero um dashboard →</a>
+          </article>
+          <article class="card">
+            <span class="ico"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="8" y="8" width="20" height="20" rx="4"/><rect x="36" y="8" width="20" height="20" rx="4"/><rect x="8" y="36" width="20" height="20" rx="4"/><rect x="36" y="36" width="20" height="20" rx="4"/></svg></span>
+            <h3>Catálogos digitais</h3>
+            <p>Catálogos para apresentar e vender seus produtos de forma moderna.</p>
+            <ul><li>Fácil de atualizar e compartilhar</li><li>Pedido direto pelo WhatsApp</li><li>Funciona bem no celular</li></ul>
+            <a class="mais" href="#contato" data-interesse="Catálogo digital">Quero um catálogo →</a>
+          </article>
+        </div>
+      </div>
+
+      <div class="grupo">
+        <div class="grupo-titulo"><h3>Presença digital e eficiência</h3><small>Clientes · Tempo · Estratégia</small></div>
+        <div class="cards">
+          <article class="card">
+            <span class="ico"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="10" width="52" height="44" rx="8"/><path d="M6 22h52M18 34h20M18 43h28"/></svg></span>
+            <h3>Sites e landing pages</h3>
+            <p>Sites rápidos, responsivos e pensados para gerar novos clientes.</p>
+            <ul><li>Layout exclusivo, sem template</li><li>Otimizado para o Google</li><li>Formulários ligados ao seu CRM</li></ul>
+            <a class="mais" href="#contato" data-interesse="Site ou landing page">Quero um site →</a>
+          </article>
+          <article class="card">
+            <span class="ico"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="16" r="6"/><circle cx="52" cy="48" r="6"/><circle cx="52" cy="16" r="6"/><path d="M18 16h28M18 16h10a8 8 0 0 1 8 8v16a8 8 0 0 0 8 8h2"/></svg></span>
+            <h3>Automações</h3>
+            <p>Robôs e integrações que eliminam tarefas manuais e reduzem erros.</p>
+            <ul><li>Notas, boletos e cobranças</li><li>Integração entre sistemas</li><li>Follow-up automático com clientes</li></ul>
+            <a class="mais" href="#contato" data-interesse="Automação">Quero automatizar →</a>
+          </article>
+          <article class="card">
+            <span class="ico"><svg width="34" height="34" viewBox="0 0 64 64" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="M22 44c0-6-8-10-8-20a18 18 0 0 1 36 0c0 10-8 14-8 20Z"/><path d="M24 52h16M27 59h10"/></svg></span>
+            <h3>Consultoria em tecnologia</h3>
+            <p>Diagnóstico, planejamento e escolha das ferramentas certas para crescer.</p>
+            <ul><li>Mapeamento de processos</li><li>Plano de digitalização</li><li>O caminho certo antes de investir</li></ul>
+            <a class="mais" href="#contato" data-interesse="Consultoria">Quero uma consultoria →</a>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARA QUEM É -->
+  <section class="secao publico" id="para-quem" style="padding-top:0">
+    <div class="miolo">
+      <h2 class="difs-titulo"><b>Para</b> quem <b>é</b><span class="ponto">?</span></h2>
+      <div class="publico-cards">
+        <article class="pcard">
+          <svg class="cena" viewBox="0 0 270 335" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="270" height="335" fill="#10141C"/>
+            <circle cx="200" cy="70" r="120" fill="#2F6BFF" opacity=".16"/>
+            <g stroke="#fff" stroke-opacity=".05"><path d="M0 60H270M0 120H270M0 180H270M0 240H270M45 0V335M105 0V335M165 0V335M225 0V335"/></g>
+            <g transform="translate(150 34)"><rect width="100" height="74" rx="10" fill="#161B26" stroke="#2F6BFF" stroke-opacity=".6"/><circle cx="11" cy="10" r="3" fill="#FF5F57"/><circle cx="20" cy="10" r="3" fill="#FEBC2E"/><circle cx="29" cy="10" r="3" fill="#28C840"/><rect x="10" y="24" width="52" height="7" rx="3.5" fill="#E6EAF2" opacity=".8"/><rect x="10" y="37" width="80" height="5" rx="2.5" fill="#8A93A6" opacity=".6"/><rect x="10" y="47" width="64" height="5" rx="2.5" fill="#8A93A6" opacity=".6"/><rect x="10" y="58" width="34" height="9" rx="4.5" fill="#3FE0D0"/></g>
+            <g transform="translate(18 52)"><rect width="78" height="62" rx="10" fill="#161B26" stroke="#fff" stroke-opacity=".12"/><rect x="0" y="0" width="78" height="16" rx="8" fill="#2F6BFF"/><g fill="#8A93A6" opacity=".7"><rect x="10" y="24" width="10" height="8" rx="2"/><rect x="26" y="24" width="10" height="8" rx="2"/><rect x="58" y="24" width="10" height="8" rx="2"/><rect x="10" y="38" width="10" height="8" rx="2"/><rect x="26" y="38" width="10" height="8" rx="2"/><rect x="42" y="38" width="10" height="8" rx="2"/></g><rect x="42" y="24" width="10" height="8" rx="2" fill="#3FE0D0"/></g>
+          </svg>
+          <div class="mascote" data-pose="padrao" aria-hidden="true"></div>
+          <h3>Profissionais<br>Autônomos</h3>
+        </article>
+        <article class="pcard">
+          <svg class="cena" viewBox="0 0 270 335" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="270" height="335" fill="#0E1626"/>
+            <circle cx="70" cy="60" r="130" fill="#3FE0D0" opacity=".08"/>
+            <g fill="#161B26" stroke="#fff" stroke-opacity=".07"><rect x="6" y="70" width="58" height="270"/><rect x="70" y="30" width="62" height="310"/><rect x="138" y="90" width="50" height="250"/><rect x="194" y="50" width="70" height="290"/></g>
+            <g fill="#2F6BFF" opacity=".55"><rect x="16" y="84" width="10" height="8"/><rect x="40" y="84" width="10" height="8"/><rect x="16" y="104" width="10" height="8"/><rect x="82" y="44" width="10" height="8"/><rect x="108" y="44" width="10" height="8"/><rect x="82" y="64" width="10" height="8"/><rect x="108" y="84" width="10" height="8"/><rect x="148" y="104" width="10" height="8"/><rect x="168" y="124" width="10" height="8"/><rect x="206" y="64" width="10" height="8"/><rect x="232" y="64" width="10" height="8"/><rect x="232" y="84" width="10" height="8"/><rect x="206" y="104" width="10" height="8"/></g>
+            <g fill="#3FE0D0"><rect x="40" y="104" width="10" height="8"/><rect x="108" y="64" width="10" height="8"/><rect x="232" y="104" width="10" height="8"/></g>
+          </svg>
+          <div class="mascote" data-pose="acenando" aria-hidden="true"></div>
+          <h3>Empresas e<br>Negócios</h3>
+        </article>
+        <article class="pcard">
+          <svg class="cena" viewBox="0 0 270 335" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+            <rect width="270" height="335" fill="#0C111C"/>
+            <circle cx="220" cy="40" r="140" fill="#2F6BFF" opacity=".2"/>
+            <g stroke="#fff" stroke-opacity=".05"><path d="M0 50H270M0 100H270M0 150H270M0 200H270"/></g>
+            <path d="M0 190 L40 176 L80 182 L120 140 L160 150 L200 96 L240 70 L270 40 L270 335 L0 335Z" fill="url(#aArea)"/>
+            <path d="M0 190 L40 176 L80 182 L120 140 L160 150 L200 96 L240 70 L262 46" fill="none" stroke="url(#aLinha)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M246 42 L264 40 L260 58" fill="none" stroke="#3FE0D0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <g transform="translate(22 36)"><rect width="92" height="44" rx="10" fill="#161B26" stroke="#fff" stroke-opacity=".12"/><rect x="10" y="10" width="40" height="6" rx="3" fill="#8A93A6" opacity=".7"/><text x="10" y="35" font-family="Space Grotesk, Arial, sans-serif" font-weight="700" font-size="15" fill="#3FE0D0">▲ +38%</text></g>
+          </svg>
+          <div class="mascote" data-pose="comemorando" aria-hidden="true"></div>
+          <h3>Empreendedores<br>e Investidores</h3>
+        </article>
+      </div>
+      <a class="desce" href="#diferencas" aria-label="Ir para as diferenças entre soluções"><svg width="54" height="28" viewBox="0 0 54 28" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4l23 10 23-10"/><path d="M4 14l23 10 23-10"/></svg></a>
+    </div>
+  </section>
+
+  <!-- DIFERENÇAS -->
+  <section class="secao difs" id="diferencas" style="padding-top:0">
+    <div class="miolo">
+      <h2 class="difs-titulo"><b>Conheça as</b> diferenças<br><b>entre soluções</b><span class="ponto">.</span></h2>
+
+      <div class="difs-palco">
+        <svg class="seta seta-esq" viewBox="0 0 60 140" aria-hidden="true"><path d="M48 6C14 30 6 80 26 128" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M14 118l12 12 8-15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="seta seta-dir" viewBox="0 0 60 140" aria-hidden="true"><path d="M12 6C46 30 54 80 34 128" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/><path d="M46 118l-12 12-8-15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+        <div class="janela">
+          <div class="janela-barra" aria-hidden="true">
+            <span class="bolinhas"><i></i><i></i><i></i></span>
+            <span class="nav-ic">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 12a8 8 0 1 1-2.3-5.6M20 4v5h-5"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg>
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+            </span>
+            <span class="url">www.suaempresa.com.br</span>
+          </div>
+          <div class="janela-corpo">
+            <div class="opcao opcao-ruim">
+              <ul>
+                <li><span class="marca">×</span>Visual limitado e igual ao da concorrência</li>
+                <li><span class="marca">×</span>Você adapta o processo ao sistema</li>
+                <li><span class="marca">×</span>Barato no início, caro para manter</li>
+              </ul>
+              <p class="rodape-op"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 16.5c2-2 5-2 7 0"/><circle cx="9" cy="10" r=".6" fill="currentColor"/><circle cx="15" cy="10" r=".6" fill="currentColor"/></svg>Pior opção para o seu negócio</p>
+            </div>
+            <div class="opcao opcao-boa">
+              <ul>
+                <li><span class="marca"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Feito sob medida para o seu processo</li>
+                <li><span class="marca"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Destaque frente aos concorrentes</li>
+                <li><span class="marca"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Automações que economizam horas</li>
+                <li><span class="marca"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Dados em tempo real para decidir melhor</li>
+                <li><span class="marca"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Credibilidade e imagem profissional</li>
+                <li><span class="marca"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>Cresce junto com a sua empresa</li>
+              </ul>
+              <p class="rodape-op"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8.5 14c2 2.2 5 2.2 7 0"/><circle cx="9" cy="10" r=".6" fill="currentColor"/><circle cx="15" cy="10" r=".6" fill="currentColor"/></svg>Melhor opção para o seu negócio
+                <svg class="op-logo" viewBox="0 0 300 64" role="img" aria-label="Nexium"><g transform="translate(4 4) scale(.7)" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M7 73V7L55 73V7"/><path d="M127 7H87V73H127M87 40H119"/><path d="M159 7L207 73M207 7L159 73"/><path d="M239 32V73"/><path d="M271 7V49A24 24 0 0 0 319 49V7"/><path d="M351 73V7L377 45L403 7V73"/><circle cx="239" cy="9" r="8.5" fill="#3FE0D0" stroke="none"/></g></svg>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="legenda">
+          <span><i class="bola bola-cinza"></i>Sites e sistemas prontos, de modelo</span>
+          <em>ou</em>
+          <span><i class="bola bola-marca"></i>Soluções sob medida, 100% feitas para você</span>
+        </div>
+      </div>
+
+      <p class="difs-texto">Invista em tecnologia do jeito certo, sem desperdiçar dinheiro e oportunidades, com uma base sólida e eficiente para o crescimento do seu negócio.</p>
+      <div class="difs-cta"><a class="btn btn-grad btn-brilho" href="#contato">Começar meu projeto →</a></div>
+    </div>
+  </section>
+
+  <!-- PROCESSO -->
+  <section class="secao processo" id="como-trabalhamos">
+    <div class="miolo">
+      <div class="cabeca-secao">
+        <span class="chip">Como trabalhamos</span>
+        <h2>Da ideia ao sistema rodando, <span class="grad">em três etapas.</span></h2>
+        <p class="sub">Você acompanha cada passo e fala direto com quem está construindo.</p>
+      </div>
+      <div class="etapas">
+        <div class="etapa">
+          <span class="num">1º</span>
+          <span class="tag">Diagnóstico gratuito</span>
+          <h3>Entendemos o seu processo</h3>
+          <p>Conversamos com você e com o time para mapear onde o tempo e o dinheiro estão escapando.</p>
+        </div>
+        <div class="etapa">
+          <span class="num">2º</span>
+          <span class="tag">Projeto sob medida</span>
+          <h3>Desenhamos e construímos</h3>
+          <p>Protótipo primeiro, código depois. Entregas por etapas para você validar e usar logo.</p>
+        </div>
+        <div class="etapa">
+          <span class="num">3º</span>
+          <span class="tag">Entrega e suporte</span>
+          <h3>Colocamos para rodar</h3>
+          <p>Treinamos o time, acompanhamos o uso e seguimos evoluindo o sistema com a empresa.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- DICA DO NEX -->
+  <section class="secao" style="padding-top:clamp(40px,6vw,72px)">
+    <div class="miolo">
+      <div class="dica">
+        <div class="mascote" data-pose="pensando" role="img" aria-label="Nex pensando"></div>
+        <div>
+          <span class="chip">Dica Nexium #01</span>
+          <h2 style="margin-top:18px">3 processos que você deveria <span class="grad">automatizar hoje.</span></h2>
+          <div class="dica-lista">
+            <div class="dica-item"><span class="n">1</span><div><b>Emissão de notas e boletos</b><span>Gere e envie sem abrir o sistema.</span></div></div>
+            <div class="dica-item"><span class="n">2</span><div><b>Relatórios semanais</b><span>Dados consolidados toda segunda, 8h.</span></div></div>
+            <div class="dica-item"><span class="n">3</span><div><b>Follow-up com clientes</b><span>Mensagens no momento certo, sozinhas.</span></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CASE -->
+  <section class="secao" id="cases" style="padding-top:clamp(40px,6vw,72px)">
+    <div class="miolo case">
+      <div class="case-texto">
+        <span class="chip">Case de sucesso</span>
+        <h2>Do Excel ao dashboard <span class="grad">em tempo real.</span></h2>
+        <p class="sub">Uma rede de varejo com quatro lojas controlava tudo em planilhas soltas. Integramos um ERP com um painel de operações, e os relatórios passaram a se montar sozinhos.</p>
+        <div class="case-numero"><strong>-72%</strong><span>de tempo gasto com relatórios</span></div>
+        <div class="case-meta"><span>VAREJO REGIONAL · 4 LOJAS</span><span>ERP + PAINEL INTEGRADO EM 6 SEMANAS</span></div>
+      </div>
+
+      <div class="painel" role="img" aria-label="Exemplo de painel de operações com receita, pedidos e horas economizadas">
+        <div class="painel-topo"><b>Painel de Operações</b><span class="aovivo">Ao vivo</span></div>
+        <div class="kpis">
+          <div class="kpi"><small>Receita (mês)</small><strong>R$ 482 mil</strong><em>▲ +18%</em></div>
+          <div class="kpi"><small>Pedidos</small><strong>12.840</strong><em>▲ +9%</em></div>
+          <div class="kpi"><small>Tempo médio</small><strong>1,8 min</strong><em>▼ -64%</em></div>
+        </div>
+        <div class="graficos">
+          <div class="graf">
+            <h4>Receita acumulada</h4>
+            <svg viewBox="0 0 320 150" aria-hidden="true">
+              <g stroke="rgba(255,255,255,.07)" stroke-width="1"><path d="M0 30H320M0 70H320M0 110H320"/></g>
+              <path d="M0 128 L29 122 L58 117 L87 108 L116 101 L145 92 L174 80 L203 71 L232 58 L261 46 L290 33 L320 20 L320 140 L0 140Z" fill="url(#aArea)"/>
+              <path d="M0 128 L29 122 L58 117 L87 108 L116 101 L145 92 L174 80 L203 71 L232 58 L261 46 L290 33 L320 20" fill="none" stroke="url(#aLinha)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+              <circle cx="316" cy="21" r="5" fill="#3FE0D0"/>
+              <g fill="#8A93A6" font-family="JetBrains Mono, monospace" font-size="9"><text x="0" y="150">JAN</text><text x="292" y="150">DEZ</text></g>
+            </svg>
+          </div>
+          <div class="graf">
+            <h4>Horas economizadas / mês</h4>
+            <div class="barras">
+              <div class="barra"><span>Automações</span><span class="trilho"><i style="width:100%"></i></span><b>46h</b></div>
+              <div class="barra"><span>Vendas</span><span class="trilho"><i style="width:70%"></i></span><b>32h</b></div>
+              <div class="barra"><span>Financeiro</span><span class="trilho"><i style="width:61%"></i></span><b>28h</b></div>
+              <div class="barra"><span>Estoque</span><span class="trilho"><i style="width:46%"></i></span><b>21h</b></div>
+              <div class="barra"><span>Suporte</span><span class="trilho"><i style="width:30%"></i></span><b>14h</b></div>
+            </div>
+          </div>
+        </div>
+        <div class="nota">*dados ilustrativos</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- NEX -->
+  <section class="secao" id="nex">
+    <div class="miolo nex">
+      <div class="nex-palco">
+        <div class="mascote" id="nex-grande" data-pose="padrao" data-anim="1" role="img" aria-label="Nex, o mascote da Nexium"></div>
+        <p class="balao" id="nex-fala" aria-live="polite">Oi! Eu sou o Nex, o assistente da Nexium.</p>
+      </div>
+      <div style="display:grid;gap:22px;min-width:0">
+        <span class="chip" style="justify-self:start">Conheça o Nex</span>
+        <h2>Este é o Nex, <span class="grad">nosso mascote.</span></h2>
+        <p class="sub">O assistente que automatiza o trabalho chato para você focar no que importa. Ele aparece por aqui e no nosso Instagram com dicas, novidades e bastidores dos projetos.</p>
+        <div class="poses" role="group" aria-label="Escolha uma pose do Nex">
+          <button class="pose" type="button" data-pose="padrao" aria-pressed="true">Padrão</button>
+          <button class="pose" type="button" data-pose="acenando" aria-pressed="false">Acenando</button>
+          <button class="pose" type="button" data-pose="pensando" aria-pressed="false">Pensando</button>
+          <button class="pose" type="button" data-pose="comemorando" aria-pressed="false">Comemorando</button>
+        </div>
+        <dl class="ficha">
+          <dt>Função</dt><dd>Assistente oficial da Nexium</dd>
+          <dt>Especialidade</dt><dd>Tarefas repetitivas, relatórios e integrações</dd>
+          <dt>No peito</dt><dd>O símbolo N, com o nó em Ciano Pulso</dd>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSÃO -->
+  <section class="secao missao" style="padding-top:0">
+    <div class="miolo">
+      <blockquote>
+        <span class="chip" style="justify-self:start">Nossa missão</span>
+        <h2>Tecnologia simples <span class="grad">para negócios reais.</span></h2>
+        <p>Levar para empresas de todos os tamanhos a tecnologia que antes só as grandes tinham: sistemas sob medida, automação e dados para decidir melhor.</p>
+        <cite>Nexium · Soluções tecnológicas</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- CONTATO -->
+  <section class="secao" id="contato" style="padding-top:0">
+    <div class="miolo contato">
+      <div class="contato-texto">
+        <span class="chip" style="justify-self:start">Sua vez</span>
+        <h2>Vamos tirar sua <span class="grad">ideia do papel?</span></h2>
+        <p class="sub">Diagnóstico gratuito para o seu projeto. Conta pra gente: qual processo mais toma o seu tempo hoje?</p>
+        <div class="dor" role="group" aria-label="Qual processo mais toma o seu tempo">
+          <button type="button" aria-pressed="false" data-servico="ERP" data-dica="Um ERP junta estoque, vendas e financeiro num lugar só. Chega de planilha desencontrada.">Controlar estoque e vendas</button>
+          <button type="button" aria-pressed="false" data-servico="Dashboard" data-dica="Um dashboard monta os números sozinho, em tempo real. Você só abre e decide.">Montar relatórios</button>
+          <button type="button" aria-pressed="false" data-servico="Catálogo digital" data-dica="Um catálogo digital mostra seus produtos bonitos no celular e recebe o pedido direto.">Enviar catálogo e orçamento</button>
+          <button type="button" aria-pressed="false" data-servico="Site ou landing page" data-dica="Um site rápido e feito para converter traz clientes enquanto você trabalha.">Atrair clientes online</button>
+          <button type="button" aria-pressed="false" data-servico="Automação" data-dica="Notas, boletos e follow-ups podem rodar sozinhos. Isso é comigo!">Tarefas repetitivas</button>
+          <button type="button" aria-pressed="false" data-servico="Consultoria" data-dica="Sem problema. A consultoria mostra o caminho certo antes de você investir.">Não sei por onde começar</button>
+        </div>
+        <div class="resposta">
+          <div class="mascote" id="nex-resposta" data-pose="pensando" role="img" aria-label="Nex"></div>
+          <div aria-live="polite"><b id="resp-titulo">Escolhe uma opção aí em cima.</b><span id="resp-texto">Eu te digo por onde a Nexium começaria.</span></div>
+        </div>
+      </div>
+
+      <form class="form" id="form-contato" novalidate>
+        <h3>Peça seu diagnóstico gratuito</h3>
+        <div class="duas">
+          <div class="campo"><label for="f-nome">Seu nome</label><input id="f-nome" name="nome" autocomplete="name" required placeholder="Como podemos te chamar?"></div>
+          <div class="campo"><label for="f-empresa">Empresa</label><input id="f-empresa" name="empresa" autocomplete="organization" placeholder="Nome da empresa"></div>
+        </div>
+        <div class="campo">
+          <label for="f-servico">Do que você precisa</label>
+          <select id="f-servico" name="servico">
+            <option>Ainda não sei</option>
+            <option>ERP</option>
+            <option>Dashboard</option>
+            <option>Catálogo digital</option>
+            <option>Site ou landing page</option>
+            <option>Automação</option>
+            <option>Consultoria</option>
+          </select>
+        </div>
+        <div class="campo"><label for="f-msg">Conte um pouco do processo</label><textarea id="f-msg" name="mensagem" placeholder="Ex.: hoje fazemos os pedidos numa planilha e perdemos tempo conferindo tudo."></textarea></div>
+        <a class="btn btn-grad" id="btn-whats" href="https://wa.me/5554996101510" target="_blank" rel="noopener">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3.5 20.5l1.4-4.2A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9 8.6c0 3.4 2.9 6.4 6.4 6.4l1.1-1.6-1.9-1-1 .9a5 5 0 0 1-2.9-2.9l.9-1-1-1.9Z"/></svg>
+          Entrar em contato
+        </a>
+        <p class="aviso-whats" id="aviso-whats">Abre o WhatsApp da Nexium com a sua mensagem já escrita.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="miolo">
+    <div class="rodape-topo">
+      <svg class="logo" viewBox="0 0 440 120" role="img" aria-label="Nexium" style="height:44px"><rect width="120" height="120" rx="30" fill="url(#gSym)"/><rect x="1" y="1" width="118" height="118" rx="29" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="2"/><path d="M34 88V32L86 88V50" fill="none" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><circle cx="86" cy="31" r="9" fill="#3FE0D0"/><g transform="translate(150 32) scale(.7)"><g fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" stroke-linejoin="round"><path d="M7 73V7L55 73V7"/><path d="M127 7H87V73H127M87 40H119"/><path d="M159 7L207 73M207 7L159 73"/><path d="M239 32V73"/><path d="M271 7V49A24 24 0 0 0 319 49V7"/><path d="M351 73V7L377 45L403 7V73"/></g><circle cx="239" cy="9" r="8.5" fill="#3FE0D0"/></g></svg>
+      <p>Tecnologia que trabalha por você.</p>
+    </div>
+    <div class="sociais">
+      <a class="social" href="https://www.instagram.com/nexiums.tech/" target="_blank" rel="noopener" aria-label="Instagram da Nexium, @nexiums.tech">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1" fill="currentColor" stroke="none"/></svg>
+        <span><b>Instagram</b><small>@nexiums.tech</small></span>
+      </a>
+      <a class="social" href="https://wa.me/5554996101510?text=Ol%C3%A1%2C%20Nexium!%20Vim%20pelo%20site." target="_blank" rel="noopener" aria-label="Conversar com a Nexium no WhatsApp">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11.6a8.5 8.5 0 0 1-12.6 7.5L3.5 20.5l1.4-4.2A8.5 8.5 0 1 1 20.5 11.6Z"/><path d="M9 8.6c0 3.4 2.9 6.4 6.4 6.4l1.1-1.6-1.9-1-1 .9a5 5 0 0 1-2.9-2.9l.9-1-1-1.9Z"/></svg>
+        <span><b>WhatsApp</b><small>(54) 99610-1510</small></span>
+      </a>
+    </div>
+    <div class="rodape-base">
+      <span>ERPs · Dashboards · Catálogos · Sites · Automações · Consultoria</span>
+      <span><a href="https://www.instagram.com/nexiums.tech/" target="_blank" rel="noopener">@nexiums.tech</a> · nexiums.tech</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Desenha o Nex nas quatro poses do guia de marca
+  var braco = function(x, rot, extra){
+    return '<g'+(extra||'')+'><g transform="rotate('+rot+' '+x+' 272)"><rect x="'+(x-14)+'" y="266" width="28" height="86" rx="14" fill="url(#mBody)" stroke="#AEB8CB" stroke-width="2"/><circle cx="'+x+'" cy="360" r="18" fill="#2F6BFF"/><circle cx="'+(x-6)+'" cy="354" r="5" fill="#fff" opacity=".4"/></g></g>';
+  };
+  var olhosFelizes = '<g fill="none" stroke="#3FE0D0" stroke-width="9" stroke-linecap="round" filter="url(#mGlow)"><path d="M156 174Q170 152 184 174"/><path d="M216 174Q230 152 244 174"/></g>';
+  var sorriso = '<path d="M184 198Q200 212 216 198" fill="none" stroke="#3FE0D0" stroke-width="6" stroke-linecap="round" filter="url(#mGlow)"/>';
+  var poses = {
+    padrao: { b:[18,-18], rosto:'<g fill="#3FE0D0" filter="url(#mGlow)"><rect x="158" y="148" width="24" height="36" rx="12"/><rect x="218" y="148" width="24" height="36" rx="12"/></g>'+sorriso, extra:'' },
+    acenando: { b:[18,-145], rosto:olhosFelizes+sorriso, extra:'<g fill="none" stroke="#3FE0D0" stroke-width="5" stroke-linecap="round" opacity=".85"><path d="M340 150q16 12 14 34"/><path d="M356 128q24 20 20 54"/></g>', aceno:true },
+    pensando: { b:[18,-160], rosto:'<g fill="#3FE0D0" filter="url(#mGlow)"><rect x="168" y="142" width="22" height="30" rx="11"/><rect x="226" y="142" width="22" height="30" rx="11"/></g><path d="M190 202H212" stroke="#3FE0D0" stroke-width="6" stroke-linecap="round" filter="url(#mGlow)"/>', extra:'<g><circle cx="96" cy="84" r="7" fill="#2F6BFF"/><circle cx="76" cy="58" r="11" fill="#2F6BFF"/><circle cx="52" cy="26" r="22" fill="#2F6BFF"/><text x="52" y="36" text-anchor="middle" font-family="Arial, sans-serif" font-weight="700" font-size="28" fill="#fff">?</text></g>' },
+    comemorando: { b:[140,-140], rosto:olhosFelizes+'<path d="M180 194Q200 222 220 194Z" fill="#3FE0D0" filter="url(#mGlow)"/>', extra:'<rect x="60" y="70" width="14" height="22" rx="4" fill="#3FE0D0" transform="rotate(20 67 81)"/><rect x="330" y="60" width="14" height="22" rx="4" fill="#2F6BFF" transform="rotate(-25 337 71)"/><rect x="40" y="200" width="14" height="22" rx="4" fill="#2F6BFF" transform="rotate(40 47 211)"/><rect x="360" y="220" width="14" height="22" rx="4" fill="#3FE0D0" transform="rotate(15 367 231)"/><rect x="110" y="30" width="14" height="22" rx="4" fill="#fff" transform="rotate(-10 117 41)"/><rect x="300" y="20" width="14" height="22" rx="4" fill="#fff" transform="rotate(30 307 31)"/><rect x="20" y="130" width="14" height="22" rx="4" fill="#3FE0D0" transform="rotate(-35 27 141)"/><rect x="375" y="140" width="14" height="22" rx="4" fill="#fff" transform="rotate(50 382 151)"/><g fill="#3FE0D0"><path d="M200 2l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" transform="translate(-130 230) scale(.8)"/><path d="M200 2l5 13 13 5-13 5-5 13-5-13-13-5 13-5z" transform="translate(140 260) scale(.7)"/></g>' }
+  };
+  function nex(nome, animar){
+    var p = poses[nome] || poses.padrao;
+    return '<svg viewBox="0 0 400 480" width="100%" height="auto" overflow="visible" aria-hidden="true" style="display:block">'+
+      '<ellipse cx="200" cy="466" rx="64" ry="8" fill="#2F6BFF" opacity=".25"/>'+
+      '<path d="M180 372Q200 456 220 372Z" fill="url(#mFlame)" filter="url(#mGlow)"/>'+
+      '<rect x="172" y="358" width="56" height="22" rx="10" fill="#2A3346"/>'+
+      braco(140, p.b[0]) + braco(260, p.b[1], (p.aceno && animar) ? ' class="aceno"' : '') +
+      '<rect x="184" y="230" width="32" height="26" rx="6" fill="#8A93A6"/>'+
+      '<rect x="135" y="248" width="130" height="120" rx="48" fill="url(#mBody)" stroke="#AEB8CB" stroke-width="2"/>'+
+      '<rect x="168" y="278" width="64" height="46" rx="14" fill="#0E1F44"/>'+
+      '<g transform="translate(182 283) scale(.3)"><path d="M34 88V32L86 88V50" fill="none" stroke="#fff" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/><circle cx="86" cy="31" r="9" fill="#3FE0D0"/></g>'+
+      '<rect x="84" y="140" width="26" height="58" rx="13" fill="#2F6BFF"/><rect x="290" y="140" width="26" height="58" rx="13" fill="#2F6BFF"/>'+
+      '<line x1="200" y1="96" x2="200" y2="62" stroke="#8A93A6" stroke-width="7" stroke-linecap="round"/>'+
+      '<circle cx="200" cy="52" r="12" fill="#3FE0D0" filter="url(#mGlow)"/>'+
+      '<rect x="100" y="92" width="200" height="150" rx="62" fill="url(#mBody)" stroke="#AEB8CB" stroke-width="2"/>'+
+      '<rect x="122" y="118" width="156" height="100" rx="42" fill="url(#mVisor)"/>'+
+      '<path d="M142 136Q152 126 176 124" fill="none" stroke="#fff" stroke-opacity=".22" stroke-width="6" stroke-linecap="round"/>'+
+      '<circle cx="146" cy="196" r="8" fill="#2F6BFF" opacity=".55"/><circle cx="254" cy="196" r="8" fill="#2F6BFF" opacity=".55"/>'+
+      p.rosto + p.extra + '</svg>';
+  }
+  function desenha(el, pose){ el.innerHTML = nex(pose, el.dataset.anim === '1'); el.dataset.pose = pose; }
+  document.querySelectorAll('.mascote[data-pose]').forEach(function(el){ desenha(el, el.dataset.pose); });
+
+  // Poses interativas
+  var falas = {
+    padrao: 'Oi! Eu sou o Nex, o assistente da Nexium.',
+    acenando: 'Cuido das tarefas repetitivas para você focar no que realmente importa.',
+    pensando: 'Hmm… qual processo mais toma o seu tempo hoje?',
+    comemorando: 'Processo automatizado! Menos tarefas manuais, menos erros.'
+  };
+  var grande = document.getElementById('nex-grande'), fala = document.getElementById('nex-fala');
+  document.querySelectorAll('.pose').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.pose').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      desenha(grande, b.dataset.pose); fala.textContent = falas[b.dataset.pose];
+    });
+  });
+
+  // Quiz "qual processo toma seu tempo"
+  var resp = document.getElementById('nex-resposta'), sel = document.getElementById('f-servico');
+  document.querySelectorAll('.dor button').forEach(function(b){
+    b.addEventListener('click', function(){
+      document.querySelectorAll('.dor button').forEach(function(x){ x.setAttribute('aria-pressed', x === b ? 'true' : 'false'); });
+      desenha(resp, 'comemorando');
+      document.getElementById('resp-titulo').textContent = 'Comece por: ' + b.dataset.servico;
+      document.getElementById('resp-texto').textContent = b.dataset.dica;
+      sel.value = b.dataset.servico;
+    });
+  });
+
+  // Links dos cards preenchem o interesse
+  document.querySelectorAll('[data-interesse]').forEach(function(a){
+    a.addEventListener('click', function(){ sel.value = a.dataset.interesse; });
+  });
+
+  // Formulário: monta o resumo e leva direto para o WhatsApp da Nexium
+  var WHATS = '5554996101510';
+  var form = document.getElementById('form-contato'), btnW = document.getElementById('btn-whats'), aviso = document.getElementById('aviso-whats');
+  function resumo(){
+    var nome = form.nome.value.trim(), emp = form.empresa.value.trim(), proc = form.mensagem.value.trim();
+    return 'Olá, Nexium! Vim pelo site e quero um diagnóstico gratuito.\n\n' +
+      '*Nome:* ' + (nome || '-') + '\n' +
+      (emp ? '*Empresa:* ' + emp + '\n' : '') +
+      '*Do que preciso:* ' + form.servico.value +
+      (proc ? '\n*Sobre o processo:* ' + proc : '');
+  }
+  function atualiza(){ btnW.href = 'https://wa.me/' + WHATS + '?text=' + encodeURIComponent(resumo()); }
+  form.addEventListener('input', atualiza);
+  form.addEventListener('change', atualiza);
+  btnW.addEventListener('click', function(e){
+    if(!form.nome.value.trim()){
+      e.preventDefault();
+      form.nome.setAttribute('aria-invalid','true'); form.nome.focus();
+      aviso.textContent = 'Preencha seu nome para entrar em contato.'; aviso.classList.add('erro');
+      return;
+    }
+    form.nome.removeAttribute('aria-invalid'); aviso.classList.remove('erro');
+    aviso.textContent = 'Abre o WhatsApp da Nexium com a sua mensagem já escrita.';
+    atualiza();
+  });
+  form.addEventListener('submit', function(e){ e.preventDefault(); btnW.click(); });
+  atualiza();
+})();
+</script>
+
+</body>
+</html>
